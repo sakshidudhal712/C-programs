@@ -1,0 +1,5 @@
+ds = tabularTextDatastore('airlinesmall.csv', 'TreatAsMissing', 'NA');
+ds.SelectedVariableNames = 'ArrDelay';
+preview(ds)
+maxDelay = mapreduce(ds, @maxArrivalDelayMapper, @maxArrivalDelayReducer);
+readall(maxDelay)
